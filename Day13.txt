@@ -1,0 +1,88 @@
+Day 13 – System Performance Tools
+____________________________________________________________________________
+(System Load, CPU, Memory, Disk, I/O Monitoring)
+
+1️⃣ uptime – System load check
+
+uptime
+
+📌 Output Example:
+15:23:01 up 5 days,  2:15,  2 users,  load average: 0.15, 0.10, 0.08
+
+load average:
+_____________
+1 minute, 5 minute, 15 minute system load
+1.00 = 1 CPU fully used
+1.00 = overloaded
+
+2️⃣ free – RAM and swap usage
+____________________________
+free -h
+
+📌 Output Explanation:
+total: Total RAM
+used: Used RAM
+free: Free RAM
+available: How much is actually available for apps
+
+Example:
+              total        used        free      shared  buff/cache   available
+Mem:           3.7G        1.2G        432M        140M        2.0G        2.1G
+Swap:          2.0G        0B          2.0G
+
+3️⃣ top – Real-time system monitor
+________________________________
+
+top
+📌 ကိုယ့် system ရဲ့ CPU, memory usage, process usage စတာတွေကို real-time ကြည့်နိုင်တယ်။
+🔁 Refresh every few seconds
+🔍 q သုံးပြီးထွက်နိုင်တယ်
+
+4️⃣ htop – Better version of top (graphical)
+___________________________________________
+sudo apt install htop
+
+htop
+📌 colorful & easier to use
+
+Arrow keys: Navigate
+F9: Kill process
+F10: Quit
+
+5️⃣ iostat – CPU & Disk I/O stats
+__________________________________
+sudo apt install sysstat
+iostat
+📌 Hard disk I/O usage နှင့် CPU usage ကြည့်ဖို့အသုံးပြု
+
+6️⃣ vmstat – Virtual Memory Statistics
+_____________________________________
+vmstat 1 5
+📌 Memory, process, CPU, I/O usage တွေကို second-based တိုင်းတာ
+
+7️⃣ dstat – Real-time system monitoring (All-in-one)
+___________________________________________________
+
+sudo apt install dstat
+dstat
+
+📌 CPU, Disk, Network, IO, Memory usage – all at once
+📌 More detailed than vmstat or iostat
+
+🧪 လေ့ကျင့်ရေး Tasks:
+___________________
+uptime နဲ့ load average ကိုကြည့်ပါ
+free -h နဲ့ RAM usage သိပါ
+top/htop run လုပ်ပြီး high CPU သုံးနေတဲ့ process တွေကြည့်ပါ
+iostat, vmstat, dstat အသုံးပြုပြီး performance check လုပ်ပါ
+
+🧾 အနှစ်ချုပ်
+___________
+Command				Function
+uptime				System uptime & load
+free				Memory & swap usage
+top / htop			Process & resource monitor
+iostat, vmstat			CPU, Disk I/O, memory stats
+dstat				All-in-one performance checker
+
+====================================================================//

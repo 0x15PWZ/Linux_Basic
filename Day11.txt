@@ -1,0 +1,68 @@
+ Day 11 – Firewall & Security Basics
+______________________________________
+
+🔥 (၁) ufw – Uncomplicated Firewall
+___________________________________
+Ubuntu မှာ default firewall tool ဖြစ်ပြီး အရမ်းလွယ်တယ်။
+sudo ufw enable       # Firewall ဖွင့်
+sudo ufw disable      # Firewall ပိတ်
+sudo ufw status       # Firewall အခြေအနေ
+
+📌 Allow & Deny Ports: 	 	Command Description
+________________________________________________________________
+sudo ufw allow 22			SSH port ဖွင့်ရန်
+sudo ufw allow 80			Web Server (HTTP) ဖွင့်ရန်
+sudo ufw deny 23			Telnet (port 23) ပိတ်ရန်
+sudo ufw allow from 192.168.1.10	သတ်မှတ် IP ကသာ ခွင့်ပြု
+
+📌 Example:
+
+sudo ufw allow 443/tcp
+
+⚠️ (၂) iptables – Advanced firewall rules
+_________________________________________
+iptables ဟာ Linux kernel firewall tool ဖြစ်ပြီး အရမ်း flexible ဖြစ်ပါတယ်။
+ufw မှာ လုပ်လို့မရတဲ့ complex rules တွေအတွက် သုံးတယ်။
+
+📌 Basic Commands:                                      Command Description
+___________________________________________________________________________
+sudo iptables -L					Rule list တွေကြည့်
+sudo iptables -F					Rule အားလုံးဖျက်
+sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT	SSH ခွင့်ပြု
+sudo iptables -A INPUT -p tcp --dport 23 -j DROP	Telnet ပိတ်
+
+🔐 Note: iptables rules ဟာ reboot ပြန်တာနဲ့ ပျက်တတ်တယ်။ Permanent ထားချင်ရင် iptables-persistent package သုံး။
+
+🔐 (၃) fail2ban – Brute-force attack ကာကွယ်
+____________________________________________
+fail2ban ဟာ log file များကို ကြည့်ပြီး repeated login fail တွေရှိရင် IP ကို အလိုအလျောက် block လုပ်ပေးတယ်။
+
+📌 Install:
+sudo apt install fail2ban
+
+📌 Check status:
+sudo systemctl status fail2ban
+
+📌 Log files:
+sudo cat /var/log/fail2ban.log
+
+📌 Default jail:
+sudo fail2ban-client status sshd   ➡ SSH service ကို brute-force မှကာကွယ်ပေးတယ်။
+
+🧪 လေ့ကျင့်ဖို့ Task များ:
+_____________________
+ufw enable, ufw allow 22, ufw status စမ်းကြည့်
+iptables -L နဲ့ current rules ကြည့်
+iptables -F နဲ့ rules ဖျက်ပြီး အသစ်ရေး
+fail2ban install လုပ်ပြီး fail2ban-client status ကြည့်
+
+🧾 အနှစ်ချုပ်
+___________
+Tool	                 Description
+________________________________________________________
+ufw	                အခြေခံ firewall control (သုံးရလွယ်)
+iptables	        Advanced firewall rule များရေးဖို့
+fail2ban	        Login attack တွေမှ auto-block
+=================================================================================//
+
+

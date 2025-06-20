@@ -1,0 +1,86 @@
+Day 14 – Shell Scripting Basics
+_______________________________
+
+1️⃣ Bash Script များရေးနည်း
+_________________________
+
+nano hello.sh           # Shell script file တစ်ခုဖန်တီးရန်
+#!/bin/bash
+echo "Hello, Bash Script!"
+
+
+chmod +x hello.sh       # Run လုပ်ဖို့
+./hello.sh
+
+2️⃣ Variables
+___________
+
+name="Mg Mg"
+echo "Hello $name"
+= အပေါ်မှာ space မထည့်ရ
+
+3️⃣ If / Else
+____________
+#!/bin/bash
+age=20
+
+if [ $age -ge 18 ]; then
+  echo "You are an adult"
+else
+  echo "You are underage"
+fi
+
+✅ Comparison Operators:
+_______________________
+Symbol	Meaning
+-eq	Equal
+-ne	Not equal
+-gt	Greater than
+-lt	Less than
+-ge	>=
+-le	<=
+
+4️⃣ Loops
+________
+for loop:
+________
+for i in 1 2 3 4 5
+do
+  echo "Number: $i"
+done
+
+while loop:
+__________
+count=1
+while [ $count -le 5 ]
+do
+  echo "Count is $count"
+  count=$((count+1))
+done
+
+5️⃣ Functions
+____________
+
+greet() {
+  echo "Hello, $1"
+}
+
+greet "Aung Aung"
+
+🧪 လေ့ကျင့်ရေး Tasks:
+___________________
+Bash script တစ်ခုရေးပါ – သင့်နာမည်နဲ့ greeting output ပေးပါ
+Number တစ်ခုယူပြီး even/odd စစ်တဲ့ if/else script လုပ်ပါ
+1 to 10 ဖော်ပြတဲ့ loop script တစ်ခုရေးပါ
+Function တစ်ခုရေးပြီး input နာမည်နဲ့ greeting ပြပါ
+
+🧾 အနှစ်ချုပ်
+__________
+Concept	Example
+Variable	name="Ko Ko"
+If / Else	[ $a -gt 5 ]
+For Loop	for i in ...
+While Loop	while [ ... ]
+Function	greet() { echo ... }
+
+=============================================================//

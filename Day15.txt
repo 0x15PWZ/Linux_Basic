@@ -1,0 +1,90 @@
+Day 15 – Shell Scripting Advanced Concepts
+_________________________________________
+
+1️⃣ Script Arguments ($1, $2, $@, $#)
+____________________________________
+nano example.sh
+
+#!/bin/bash
+echo "First arg: $1"
+echo "Second arg: $2"
+echo "All args: $@"
+echo "Total args: $#"
+
+chmod 400 example.sh       ➡ Run 
+./example.sh hello world   
+
+📌 Output:
+First arg: hello
+Second arg: world
+All args: hello world
+Total args: 2
+
+2️⃣ Arrays in Bash
+_________________
+
+fruits=("apple" "banana" "mango")
+echo "First fruit: ${fruits[0]}"
+echo "All fruits: ${fruits[@]}"
+
+3️⃣ case Statement (like switch)
+______________________________
+
+#!/bin/bash
+
+echo "Enter a number (1-3):"
+read number
+
+case $number in
+  1)
+    echo "You chose One"
+    ;;
+  2)
+    echo "You chose Two"
+    ;;
+  3)
+    echo "You chose Three"
+    ;;
+  *)
+    echo "Invalid choice"
+    ;;
+esac
+
+4️⃣ Exit Status – $?
+___________________
+
+ls /tmp
+echo "Exit status: $?"  # 0 = success, non-zero = error
+ls /not-found
+echo "Exit status: $?"  # error → 2
+
+5️⃣ Error Handling: set, trap
+____________________________
+set -e → stop script on any error
+
+#!/bin/bash
+set -e
+echo "Running safe script"
+ls /wrong-path   # script will stop here
+echo "You won't see this"
+
+trap → cleanup or messages on exit
+trap "echo 'Script exited'; exit" EXIT
+
+🧪 လေ့ကျင့်ရေး Tasks:
+___________________
+Argument ၂ ခုယူပြီး add/sum လုပ်တဲ့ script တစ်ခုရေးပါ
+Fruits array တစ်ခုသုံးပြီး ၂ ခုပေါင်းပြပါ
+case statement နဲ့ menu တစ်ခုရေးပါ
+Error တစ်ခုမဖြစ်ရင် trap သုံးပြီး clean message ပြပါ
+
+🧾 အနှစ်ချုပ်
+Concept			Description
+_____________________________________________________
+$1, $@			Script arguments
+array[@]		Bash arrays
+case			Alternative to if-else
+$?			Previous command's exit status
+trap, set -e		Error handling
+
+======================================================================//

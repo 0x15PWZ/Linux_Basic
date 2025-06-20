@@ -1,0 +1,70 @@
+📅 Day 9 – systemd, services, boot process, logs, monitoring
+____________________________________________________________
+📌 (၁) systemd ဆိုတာဘာလဲ?
+__________________________
+systemd က Linux OS တစ်ခုအတွက် init system ဖြစ်ပြီး၊ system boot လုပ်ချိန်မှာ services, daemons, mounts, targets စတာတွေကို စတင်စေပါတယ်။
+Ubuntu 16.04 နဲ့အထက် version တွေမှာ systemd ကို default အနေနဲ့ အသုံးပြုပါတယ်။
+📁 systemd related ဖိုင်တွေကို /etc/systemd/ ထဲမှာ တွေ့ရတယ်။
+
+⚙️ (၂) Services ကို ထိန်းချုပ်ခြင်း
+_____________________________
+Linux system မှာ running service တွေကို systemctl command နဲ့ ထိန်းချုပ်ပါတယ်။
+
+Common Commands: 				Command	Description
+____________________________________________________________________
+sudo systemctl start nginx			Service ကို start
+sudo systemctl stop nginx			Service ကို stop
+sudo systemctl restart nginx			Restart service
+sudo systemctl status nginx			Check service status
+sudo systemctl enable nginx			Boot တင်တိုင်း auto start
+sudo systemctl disable nginx			Boot တင်တိုင်း auto stop
+sudo systemctl is-enabled nginx			Enable ဖြစ်/မဖြစ် စစ်မယ်
+sudo systemctl list-units --type=service	Active service list
+
+🔄 (၃) Boot Process များ
+_______________________
+Linux OS boot process ဟာ အောက်ပါအဆင့်တွေဖြင့်လုပ်ဆောင်ပါတယ် –
+BIOS/UEFI – Hardware initialize
+GRUB – OS select menu
+Kernel – Linux Kernel ကို load
+Init system (systemd) – Services start
+Login Manager – Login screen ပေါ်
+
+📁 Boot logs တွေကို ကြည့်ချင်ရင်:
+____________________________
+
+journalctl -b
+
+📓 (၄) Logs ကြည့်နည်း (journalctl)
+Linux မှာ systemd logs တွေကို ကြည့်ဖို့ journalctl ကို အသုံးပြုပါတယ်။
+
+🧾 Useful Commands 		Command	Description
+journalctl			System log တွေအားလုံးပြ
+journalctl -u nginx		Nginx service log
+journalctl -b			Current boot log
+journalctl -xe			Error logs only (debugging)
+journalctl --since today	ယနေ့ log များ
+journalctl -f			Real-time logs (like tail -f)
+
+📌 Example:
+
+journalctl -u ssh.service --since yesterday
+
+🧪 လေ့ကျင့်ဖို့ Practice
+___________________
+systemctl status ssh နဲ့ SSH service check
+sudo systemctl start nginx → sudo systemctl stop nginx
+journalctl -u ssh နဲ့ SSH log ကြည့်
+Boot logs ကြည့်ဖို့ journalctl -b ကို အသုံးပြု
+
+🧾 အနှစ်ချုပ်
+___________
+အကြောင်းအရာ			အသုံးဝင်သော command
+__________________________________________________________
+Service control			systemctl
+Logs ကြည့်			journalctl
+Boot logs			journalctl -b
+Auto-start enable/disable	systemctl enable/disable
+
+===========================================================================//
+

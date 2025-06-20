@@ -1,0 +1,71 @@
+Day 16– ပြန်လည်သုံးသပ်ခြင်း + Shell Script Project
+______________________________________________
+🧠 ပြန်လည်သုံးသပ်ရန် (Recap)
+အကြောင်းအရာ			မှတ်သားရန် Commands
+____________________________________________________________________
+File system			ls, cd, pwd, cp, mv, rm, mkdir
+Permissions			chmod, chown
+Editors				nano, vim
+Process				ps, top, kill
+Package				apt, dpkg, snap
+Users/Groups			adduser, usermod, deluser, groupadd
+Disk				df, du, mount, umount
+Logs				journalctl, dmesg, tail, grep
+Networking			ip, ping, ss, traceroute, dig
+
+
+🛠 Project – Disk Usage Monitor Script
+______________________________________
+ရည်ရွယ်ချက်: Disk usage percentage သာမက အနည်းဆုံး warning alert ပေးနိုင်တဲ့ shell script တစ်ခုရေးပါမယ်။
+
+🧾 Script Name: nano disk_monitor.sh
+
+#!/bin/bash
+# Define Threshold
+THRESHOLD=80
+
+# Get disk usage percentage (root partition)
+USAGE=$(df / | grep / | awk '{ print $5 }' | sed 's/%//g')
+
+# Get current date
+DATE=$(date)
+
+echo "[$DATE] Checking disk usage..."
+echo "Disk usage is ${USAGE}%"
+
+# Check if usage exceeds threshold
+if [ "$USAGE" -gt "$THRESHOLD" ]; then
+    echo "Warning: Disk usage is above ${THRESHOLD}%!"
+    # You can extend this part to send an email or log to file
+else
+    echo "Disk usage is within limits."
+fi
+
+
+✅ Step by Step explanation
+___________________________
+df / – root partition disk usage ကိုယူတယ်
+awk နဲ့ % column ကိုဖတ်တယ်
+sed 's/%//g' – percentage symbol ကိုဖယ်ရှားတယ်
+usage > threshold ဖြစ်ရင် warning ပြတယ်
+
+💡 လုပ်ဆောင်ရန်
+_____________
+File တစ်ခု disk_monitor.sh နဲ့ ဖန်တီးပါ
+chmod +x disk_monitor.sh နဲ့ executable ပြုလုပ်ပါ
+./disk_monitor.sh လုပ်ပြီး run ကြည့်ပါ
+
+ထပ်ပြီးတိုးချင်လျှင် –
+Result ကို log file ထဲရေး
+Email တစ်ခုပို့
+Multiple partitions စစ်
+
+🧪 Bonus Task
+_____________
+Threshold ကို argument အနေနဲ့ထည့်ပေးရန် try လုပ်ကြည့်ပါ:
+THRESHOLD=$1
+
+Example run:
+./disk_monitor.sh 90
+
+======================================================================//

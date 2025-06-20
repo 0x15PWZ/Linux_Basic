@@ -1,0 +1,103 @@
+✅ Day 8 - Disk Management (df, du, mount) and File Compression & Archiving 
+_______________________________________________________________________________________________________
+
+🧱 (၁) Disk Management
+______________________
+🔹 1. df – Disk space usage ကို ကြည့်ခြင်း
+_______________________________________
+
+df -h                   > Partition တစ်ခုချင်းစီရဲ့ used, available, percentage usage တွေကို ပြ
+-h = human-readable (MB, GB အနေနဲ့ ပြ)
+📌 ဥပမာ:
+
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1        50G   25G   23G  52% /
+
+🔹 2. du – ဖိုင်/ဖိုင်တွဲ တစ်ခုချင်းစီရဲ့ size
+__________________________________
+
+du -sh /path/to/folder
+-s = summary only
+-h = human-readable
+
+📌 ဥပမာ:
+du -sh /var/log
+# Output: 250M   /var/log
+
+🔹 3. mount – Storage device တစ်ခုကို mount လုပ်ခြင်း
+_________________________________________________
+
+sudo mount /dev/sdb1 /mnt/mydrive
+/dev/sdb1 = USB or disk partition
+
+/mnt/mydrive = mount point
+
+🧽 Unmount:
+___________
+sudo umount /mnt/mydrive
+
+🔹4. free -h – RAM usage
+__________________________
+
+free -h
+💾 4. vmstat, iostat, uptime
+uptime – System up မယ်သွားတာကြာလောက်တယ်ဆိုတာ
+vmstat – Memory, I/O, CPU
+
+iostat – Disk I/O
+
+
+📦 (၂) File Compression & Archiving
+____________________________________
+🔸 1. tar – Multiple files ကို archive တစ်ခုတည်းဖန်တီး
+
+tar -cvf archive.tar folder/
+c = create
+v = verbose (progress ပြ)
+f = filename
+
+📂 Extract:
+__________
+tar -xvf archive.tar
+
+🔸 2. gzip – .gz ဖိုင်အဖြစ် compress
+__________________________________
+gzip file.txt      # file.txt.gz ဖြစ်သွားမယ်
+gunzip file.txt.gz # ပြန်ဖြည်
+➡ Single file only
+
+🔸 3. zip – .zip ဖိုင်ဖန်တီး (Windows compatible)
+_____________________________________________
+
+zip archive.zip file1 file2 folder/      ➡ File + folder တွေကို archive + compress တစ်ပြိုင်နက်
+unzip archive.zip
+
+
+🔸 4. xz – .xz compression (Very high compression)
+_________________________________________________
+
+xz file.txt     # file.txt.xz ဖြစ်
+unxz file.txt.xz
+➡ gzip ထက် compress ပိုတယ်
+
+🧪 လေ့ကျင့်စရာများ
+________________
+df -h နဲ့ disk space usage ကြည့်ပါ။
+du -sh ~/Downloads နဲ့ folder size စစ်ပါ။
+USB drive တစ်ခုကို /mnt/usb မှာ mount/umount လုပ်ပါ။
+tar -cvf myfolder.tar myfolder/ – folder တစ်ခု archive လုပ်ပါ။
+gzip file.txt နဲ့ compress → gunzip ပြန်ဖြည်
+zip -r myzip.zip myfolder/ → unzip myzip.zip
+
+🧾 Summary Table
+________________
+Command			Description
+df -h			Disk usage ကြည့် (partition-wise)
+du -sh			Folder/file size ကြည့်
+mount, umount		Storage တင်/ချ
+tar			File/folder archive လုပ်
+gzip, gunzip		Single file compress/decompress
+zip, unzip		Multi-file compress/decompress
+xz, unxz		High compression method
+
+=================================================================================//

@@ -1,0 +1,116 @@
+✅ Day 4 - Text Editors အသုံးပြုခြင်း
+__________________________________
+၁။ nano – အရမ်းလွယ်တဲ့ Text Editor
+_______________________________
+
+nano filename.txt
+အသစ်ဖိုင်ဖန်တီးရင် nano နဲ့ ဖွင့်ပြီး ရေးပါ။
+ရေးပြီးတာနဲ့ Ctrl + O → save
+Enter → အတည်ပြု
+Ctrl + X → ထွက်
+📌 Shortcut တွေကို အောက်ဘက်မှာ ပြထားတတ်ပါတယ်။
+
+၂။ vim – Advanced Text Editor (ခက်ပေမယ့် အင်္ဂါရပ်များစွာရှိ)
+_____________________________________________________
+
+vim filename.txt
+ဖွင့်လိုက်တာနဲ့ Command Mode ဖြစ်တယ်။
+ရေးချင်ရင် i (Insert mode)
+ပြီးရင် Esc နဲ့ ပြန်ထွက်
+:w → save
+:q → quit
+:wq → save & quit
+:q! → save မလုပ်ပဲထွက်
+📌 Vim သင်ကြားမှုအတွက်:
+vimtutor လို့ terminal မှာရိုက်ပြီး စတင်လေ့လာနိုင်ပါတယ်။
+
+၃။ cat – ဖိုင်ဖတ်ခြင်းနှင့်ဖော်ပြခြင်း
+____________________________
+
+cat file.txt
+ဖိုင်ထဲကအကြောင်းအရာအားလုံးဖော်ပြတယ်။
+အသစ်ဖန်တီးချင်ရင် : cat > file.txt
+📌 ဖိုင်တစ်ခုထဲမှာအကြောင်းအရာ append လုပ်ချင်ရင်: cat >> file.txt
+
+၄။ head – ဖိုင်ရဲ့အပေါ်ပိုင်းကြည့်ခြင်း
+____________________________
+
+head file.txt               # ပုံမှန်အားဖြင့် ပထမ ၁၀ လိုင်းကိုပြတယ်
+head -n 5 file.txt          # နောက်ပိုင်းက အရေအတွက်သတ်မှတ်နိုင်တယ်
+
+၅။ tail – ဖိုင်ရဲ့အောက်ပိုင်းကြည့်ခြင်း
+_____________________________
+
+tail file.txt          # ပုံမှန်အားဖြင့် နောက်ဆုံး ၁၀ လိုင်းကိုပြတယ်
+tail -n 15 file.txt    # နောက်ဆုံး 15 လိုင်းကြည့်
+📌 Log file တွေကတော့ live update များတတ်တာကြောင့် tail -f ကိုသုံးတတ်ကြတယ်:
+tail -f /var/log/syslog
+
+၆။ more – အကြောင်းအရာများများပါတဲ့ဖိုင်များဖတ်ဖို့
+__________________________________________
+
+more file.txt
+Space → နောက်ထပ်စာမျက်နှာ
+q → ထွက်
+
+၇။ less – more ထက် powerful ဖြစ်တဲ့ reader
+________________________________________
+
+less file.txt
+Up/Down arrows → scroll
+/searchword → ရှာဖွေရန်
+q → quit
+
+📌 less သည် scroll လုပ်လို့ရတဲ့ cat နဲ့ more တို့ရဲ့ upgrade version ဖြစ်တယ်။
+
+၈။ ဖိုင်ရှာဖွေရေး Commands
+_______________________
+🔍 grep – စာသားကိုဖိုင်ထဲကနေ ရှာ
+
+grep "hello" filename.txt
+filename.txt ထဲမှာ "hello" ဆိုတဲ့ စာသားပါလာတဲ့လိုင်းတွေကိုပြတယ်။
+
+✔ Options
+grep -i "word" file.txt   # case insensitive
+grep -r "word" folder/    # recursive
+grep -n "word" file.txt   # show line number
+
+🔍 find – ဖိုင်တွေကို system မှာရှာ
+
+find /path -name "filename.txt"
+အဆိုပါ path အောက်ကနေ ဖိုင်နာမည်ကိုရှာတယ်
+
+✔ ဥပမာ
+find /home -name "*.txt"
+/home အောက်က .txt ဖိုင်အားလုံးကိုရှာမယ်။
+
+၉။ Summary Table
+________________
+Command		အသုံးပြုမှု		သုံးသောပုံ
+________________________________________________________________
+nano		ဖိုင်ဖွင့်/ပြင်		nano filename.txt
+vim		Advanced edit		vim filename.txt
+cat		ဖိုင်ဖတ်/ဖော်ပြ		cat filename.txt
+head		ပထမပိုင်းကြည့်		head -n 5 filename.txt
+tail		နောက်ဆုံးပိုင်း		tail -n 10 filename.txt
+tail -f		live log ကြည့်		tail -f /var/log/syslog
+more		များတဲ့ဖိုင်ဖတ်		more filename.txt
+less		Scroll & search		less filename.txt
+grep            finding text            grep "hello" filename.txt
+
+၉။ လေ့ကျင့်ရန်
+____________
+nano testfile.txt       # ဖိုင်ဖန်တီးပြီးရေးပါ
+cat testfile.txt        # ဖိုင်ဖတ်
+head testfile.txt       # ပထမပိုင်းကြည့်
+tail testfile.txt       # နောက်ဆုံးပိုင်းကြည့်
+less testfile.txt       # scroll ဖြင့်ကြည့်
+
+🔚 သင်သိထားသင့်တဲ့အချက်
+______________________
+GUI မရှိတဲ့ Linux system များမှာ Command line editor တွေက အဓိကပါ။
+Nano သည် beginner များအတွက် အရမ်းအဆင်ပြေတယ်။
+Vim သည် developer များအတွက် အင်မတန်အသုံးဝင်ပါတယ်။
+Log ဖိုင်ကြည့်ဖို့ tail -f နဲ့ less တို့ကို အဓိကသုံးတတ်ကြတယ်။
+=================================================================================//
+

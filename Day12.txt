@@ -1,0 +1,85 @@
+Day 12 – Cron Jobs, Log Management, Backup
+__________________________________________
+
+✅ cron ဆိုတာဘာလဲ?
+__________________
+Linux system မှာ အချိန်မှန် tasks (backup, update, scan) တို့ကို အလိုအလျောက်လုပ်ဖို့။
+
+🧾 crontab syntax:
+
+*  *  *  *  *  command
+|  |  |  |  |
+|  |  |  |  +----- အပတ်ရက် (0-7) (0=Sunday)
+|  |  |  +-------- လ (1-12)
+|  |  +----------- ရက် (1-31)
+|  +-------------- နာရီ (0-23)
++----------------- မိနစ် (0-59)
+
+📌 Examples:    Command Description
+___________________________________
+crontab -e	Edit cron job
+crontab -l	View current jobs
+crontab -r	Remove all jobs
+
+📅 Useful Examples:
+# ၅ တိုင်းမိနစ် ၅ မိနစ်တိုင်း backup.sh ကို run
+*/5 * * * * /home/user/backup.sh
+
+# နေ့တိုင်း မနက် ၂ နာရီမှာ log clear
+0 2 * * * /usr/bin/logclear
+
+📜 (၂) logrotate – Log file management
+______________________________________
+System logs တွေ များလာရင် space ပြည့်တတ်လို့ automatic log rotation လုပ်ဖို့ အသုံးပြုတယ်။
+
+📌 Example config file:
+sudo nano /etc/logrotate.d/nginx
+
+conf
+/var/log/nginx/*.log {
+    daily
+    missingok
+    rotate 14
+    compress
+    delaycompress
+    notifempty
+    create 640 www-data adm
+}
+➡ လက်ရှိ log ကို rotate လုပ်ပြီး .gz အဖြစ်သိမ်းထားတယ်။
+
+💾 (၃) rsync – Efficient file backup tool
+_________________________________________
+Backup အတွက် အသုံးများတဲ့ tool တစ်ခုဖြစ်ပြီး ရှိပြီးသား ဖိုင်တွေကို overwrite မလုပ်ပဲ delta copy လုပ်ပါတယ်။
+
+📌 Basic Syntax:
+_______________
+rsync [options] source destination
+
+📌 Common Usage:                 			 Command Description
+______________________________________________________________________________
+
+rsync -av /source /backup				Full backup (preserve permissions)
+rsync -avz user@192.168.1.10:/data /local/backup	Remote backup via SSH
+
+📌 Options:
+___________
+-a = archive
+-v = verbose
+-z = compress
+
+🧪 လေ့ကျင့်ရေး Tasks:
+___________________
+crontab -e နဲ့ မိနစ်တိုင်း /home/user/test.sh ကို run စမ်း
+logrotate example file ဖတ်ကြည့် – cat /etc/logrotate.conf
+rsync နဲ့ /home/user ကို /backup/user မှာ backup လုပ်
+
+🧾 အနှစ်ချုပ်
+__________
+Tool			လုပ်ဆောင်ချက်
+cron, crontab		Task scheduling – automation
+logrotate		Log cleanup & compression
+rsync			Smart backup & sync
+
+================================================================//
+
+

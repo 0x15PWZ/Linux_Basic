@@ -1,0 +1,67 @@
+Day 1-Linux Fundamentals 
+________________________
+အကြောင်းအရာ
+Linux ဆိုတာဘာလဲ?
+Linux Distribution များ (Ubuntu, CentOS, Debian, Fedora)
+Linux OS သုံးရန် လိုအပ်တဲ့ software နှင့် virtual machine setup
+
+အပိုင်း ၁ - Linux introduction
+___________________________
+
+Linux ဆိုတာဘာလဲ?
+Linux သည် open source operating system (OS) တစ်ခုဖြစ်ပြီး server, desktop နှင့် embedded system များတွင် အသုံးပြုကြသည်။ 
+Windows နဲ့ MacOS ကဲ့သို့ OS တစ်ခုဖြစ်ပြီး ကွန်ပျူတာ hardware ကိုထိန်းချုပ်ရန်အတွက် software အမျိုးအစားတစ်ခုဖြစ်ပါတယ်။
+
+Linux Distribution များ
+Linux က စတင်ဖြန့်ချိခဲ့သူ Linus Torvalds မှ kernel ကို တည်ဆောက်ခဲ့ပြီး သူ့အပေါ် အခြေခံပြီး အမျိုးမျိုးသော “distribution” များ (Ubuntu, CentOS, Debian, Fedora စသည်) တည်ဆောက်ဖြန့်ချိကြသည်။ အချို့က desktop ပိုသင့်တော်ပြီး အချို့က server ပိုသင့်တော်သည်။
+
+Distribution		သုံးစွဲသင့်သောနေရာ	(Features)
+_________________________________________________________________________________________________________
+Ubuntu			Desktop 		Server	User-friendly, Beginner Friendly, Large Community
+CentOS			Server			Stable, Enterprise-grade, Long-term support
+Debian			Server			Desktop	Stable, Large repository, Community driven
+Fedora			Desktop	   		Cutting-edge features, Latest software
+
+အပိုင်း ၂ - Linux ကို သုံးရန် Software များ
+____________________________________
+
+မိတ်ဆွေ Windows သုံးရင် VirtualBox, VMware ကဲ့သို့ virtual machine အစီအစဉ်တစ်ခု ထည့်သွင်းပြီး Ubuntu Desktop သို့ CentOS တို့ကို တပ်ဆင် သုံးနိုင်ပါသည်။
+လုပ်ဆောင်ရန်
+VirtualBox ကို https://www.virtualbox.org မှာ download လုပ်
+Ubuntu ISO ဖိုင်ကို https://ubuntu.com/download/desktop မှာ download လုပ်
+VirtualBox မှာ VM အသစ် ဖန်တီးပြီး Ubuntu ကို install လုပ်ပါ။
+
+အပိုင်း ၃ - လုပ်ဆောင်ချက်
+_____________________
+
+Step 1: VirtualBox (မိတ်ဆွေရဲ့ OS အပေါ်မူတည်ပြီး)
+Step 2: Ubuntu ISO download
+Step 3: VirtualBox မှာ VM ဖန်တီးပြီး Ubuntu install
+
+အပိုင်း ၄ - အခြေခံ Command များ
+___________________________
+Linux shell (terminal) မှာ command များကို အသုံးပြုပြီး system ကို ထိန်းချုပ်နိုင်သည်။
+အကြောင်းအရာများ -
+pwd - current directory ကိုပြ
+ls - directory content ကြည့်
+cd - directory ပြောင်း
+mkdir - directory ဖန်တီး
+touch - file ဖန်တီး
+rm - ဖိုင်ဖျက်
+
+
+လုပ်ဆောင်ရန်
+Terminal ဖွင့်ပြီး အောက်ပါ command များ ရိုက်ထည့်ကြည့်ပါ -
+pwd
+ls
+mkdir test_folder
+cd test_folder
+touch test_file.txt
+ls
+rm test_file.txt
+cd ..
+rmdir test_folder
+=====================================================================================
+
+
+

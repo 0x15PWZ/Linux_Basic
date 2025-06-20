@@ -1,0 +1,116 @@
+Day 10 – Linux Networking Basics
+________________________________
+
+🌐 (၁) ip command – modern network tool
+ip command ဟာ network interface တွေကို ပြင်ဖို့ အသုံးပြုပါတယ်။
+
+Common Usage:        				Command	Description
+__________________________________________________________________________________
+ip a						All IP addresses (same as ifconfig)
+ip link						Interface list
+ip route					Routing table ကြည့်ရန်
+ip addr add 192.168.1.100/24 dev eth0		IP add to eth0
+ip addr del 192.168.1.100/24 dev eth0		IP ဖျက်
+
+📌 Example:
+ip addr show
+
+📟 (၂) ifconfig – Legacy tool (still useful)
+____________________________________________
+ifconfig ဟာ ip command ထက်အဟောင်းဖြစ်သော်လည်း troubleshooting အတွက် အသုံးများတယ်။
+Common Usage 			Command	Description
+____________________________________________________
+ifconfig			Show all interfaces
+ifconfig eth0			Show eth0 info only
+ifconfig eth0 up/down		Interface enable/disable
+
+📌 ifconfig မရှိရင်:
+sudo apt install net-tools
+
+📶 (၃) ping – Connectivity Test
+________________________________
+
+📌 Usage:
+ping google.com
+ping 192.168.1.1 	 ➡ host ရဲ့ connectivity test လုပ်ဖို့။
+📌 Ctrl + C နဲ့ ရပ်တားနိုင်ပါတယ်။
+
+📡 (၄) netstat – Network Status
+_______________________________
+Connections, ports, routing info စတာတွေကို ပြပါတယ်။ (net-tools package လိုအပ်)
+ Common Usage			Command	Description
+_________________________________________________________________
+netstat -tuln			Listening ports (TCP/UDP)
+netstat -r			Routing table
+netstat -anp			Active connections with process ID
+
+📌 Example:
+sudo apt install net-tools
+netstat -tuln
+
+🔌 (၅) ss – Socket Statistics (newer than netstat)
+__________________________________________________
+netstat ကိုအစားထိုးတာ ဖြစ်ပြီးပိုလျင်မြန်တယ်။
+Usage:		 	Command Description
+___________________________________________
+ss -tuln		Listening ports
+ss -ant			ll TCP connections
+ss -l			All listening sockets
+
+🛰️ (၆) traceroute – Route path test
+___________________________________
+Packet ရဲ့ လမ်းကြောင်း (hops) တွေကို သိချင်တယ်ဆိုရင် အသုံးပြု
+
+📌 Usage:
+sudo apt install traceroute
+traceroute google.com       ➡ hop by hop လမ်းကြောင်း ပြပေးတယ်။
+
+🌍 (၇) nslookup – DNS query test
+Domain name -> IP address resolution
+
+📌 Usage:
+nslookup google.com
+➡ DNS record တွေကို ပြပေးတယ်။
+
+🖥️ (၈) hostname – Machine name
+_______________________________
+
+hostname                                   ➡ မိမိ machine ရဲ့ hostname ကို ပြပါတယ်။
+sudo hostname newname                      ➡ Change hostname (temporary)
+sudo hostnamectl set-hostname newname      ➡ Permanent:
+
+uname -n                   ➡  show machine hostname
+uname -o                   ➡  show machine os
+uname -m                   ➡  show machine bits
+uname -r                   ➡  show current GNU version
+
+🌐 (၉) nmtui – Text-based UI for network config
+________________________________________________
+Ubuntu desktop သုံးသူတွေအတွက် အသုံးဝင်တယ်
+nmtui
+➡ UI interface မှာ IP setting, DNS, Hostname စတာတွေကို configure လုပ်နိုင်တယ်။
+
+🧪 လေ့ကျင့်ရေးအတွက် Tasks
+_________________________
+ip a နဲ့ IP check လုပ်
+ping 8.8.8.8 နဲ့ Internet connectivity စမ်း
+traceroute google.com နဲ့ path check
+netstat -tuln နဲ့ listening ports ကြည့်
+ss -ant နဲ့ active TCP connection ကြည့်
+nslookup google.com နဲ့ DNS ရှာ
+hostnamectl set-hostname mylinuxpc နဲ့ hostname ပြောင်း
+
+🧾 အနှစ်ချုပ်
+___________
+Command			Purpose
+____________________________________________________
+ip, ifconfig		IP address နှင့် interface info
+ping			Connectivity test
+netstat, ss		Active connections and ports
+traceroute		Network route path
+nslookup		DNS resolution
+hostname		View/change hostname
+nmtui			UI-based network config
+
+=========================================================================//
+

@@ -1,0 +1,69 @@
+✅ Day 7 – Package Management 
+=============================
+🧠 Package Management ဆိုတာဘာလဲ?
+Linux OS မှာ software တစ်ခုတည်ဆောက်ဖို့ source code, dependency, configuration files တို့ပါတဲ့ compressed archive ကို package လို့ခေါ်တယ်။
+Package management ဆိုတာကတော့ ဒီ software package များကို install / remove / update / query လုပ်ခြင်း process ပါ။
+
+🔧 ၁။ apt – Ubuntu/Debian အတွက် အရမ်းအသုံးများ
+_____________________________________________
+sudo apt update                   ➡ System package list ကို refresh လုပ်ပြီး update တင်
+sudo apt upgrade
+sudo apt install package_name     ➡ Software တင်/ဖျက်
+sudo apt remove package_name
+sudo apt search nginx             ➡ Search & detail ကြည့်ဖို့
+sudo apt show nginx
+
+
+📦 ၂။ dpkg – Debian Package Manager
+____________________________________
+.deb files (Debian packages) ကို install/remove လုပ်ဖို့
+
+sudo dpkg -i package.deb         ➡ .deb ဖိုင်ကို install
+sudo dpkg -r package_name        ➡ package ဖျက်
+dpkg -l                          ➡ installed packages list
+dpkg -s nginx                    ➡ check package info
+
+📁 ၃။ .deb ဆိုတာဘာလဲ?
+_____________________
+.deb file ဆိုတာ Debian-based distros (Ubuntu, Kali, etc.) အတွက် application installer file တစ်ခုဖြစ်တယ်။
+ဥပမာ: google-chrome-stable_current_amd64.deb
+
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+sudo apt -f install          ➡ dependency fix
+
+📦 ၄။ snap – Universal Linux Package Manager
+______________________________________________
+Snap ဆိုတာ Canonical (Ubuntu creator) မှ ထုတ်တဲ့ containerized apps package system ဖြစ်တယ်။
+sudo snap install package_name
+sudo snap remove package_name
+snap list
+ဥပမာ:
+sudo snap install vlc
+➡ Snap packages များဟာ dependency တွေ bundled ဖြစ်တာကြောင့် size ကြီးတတ်တယ်။
+
+📦 ၅။ Flatpak / AppImage (အခြား alternative)
+___________________________________________
+
+Type		Description
+______________________________________________________
+Flatpak		Red Hat-backed package system
+AppImage	Portable Linux app (no install needed)
+
+🧪 လေ့ကျင့်ဖို့
+___________
+sudo apt install htop ဖြင့် htop တင်ပါ။
+dpkg -l ဖြင့် installed packages များကြည့်ပါ။
+.deb ဖိုင်တစ်ခုကို download ပြီး dpkg -i နဲ့ install လုပ်ပါ။
+snap install သုံးပြီး VLC (သို့) hello-world package တင်ကြည့်ပါ။
+
+📌 အနှစ်ချုပ်
+__________
+Command			Description
+___________________________________________________________________
+apt			User-friendly package tool (Ubuntu/Debian)
+dpkg			Low-level Debian package handler
+.deb			Debian installer file
+snap			Universal containerized app manager
+flatpak, AppImage	Alternative packaging formats
+
+==================================================================================//
